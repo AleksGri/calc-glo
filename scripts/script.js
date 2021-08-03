@@ -5,13 +5,13 @@ console.log('Console message');
 
 // Lesson02
 // 1)
-let money = 16000;
-let income = 'Uber';
-let addExpenses = 'Internet, Taxi, Utilities';
-let deposit = true;
+const money = 16000;
+const income = 'Uber';
+const addExpenses = 'Internet, Taxi, Utilities';
+const deposit = true;
 const mission = 10e6;
-let period = 12;
-let budgetDay;
+const period = 12;
+const budgetDay = money / 30;
 
 //2)
 console.log(typeof money + ' ' + typeof income + ' ' + typeof deposit);
@@ -23,7 +23,6 @@ console.log('Цель заработать ' + mission + ' долларов');
 
 console.log(addExpenses.toLowerCase().split(', '));
 
-budgetDay = money / 30;
 console.log(budgetDay);
 
 
