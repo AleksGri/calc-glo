@@ -11,38 +11,44 @@ const expenses2 = prompt('Введите обязательную статью �
 const amount2 = +prompt('“Во сколько это обойдется?”');
 const mission = 10e6;
 const period = 12;
-const budgetMonth = money - amount1 - amount2;
-const budgetDay = budgetMonth / 30;
+const accumulatedMonth = getAccumulatedMonth();
+const budgetDay = accumulatedMonth / 30;
 
+showTypeOf(money);
+showTypeOf(income);
+showTypeOf(deposit);
 
-console.log(typeof money + ' ' + typeof income + ' ' + typeof deposit);
-
-console.log(addExpenses.length);
-
-console.log(`Период равен ${period} месяцев`);
-console.log('Цель заработать ' + mission + ' долларов');
-
+console.log(getExpensesMonth());
 console.log(addExpenses.toLowerCase().split(', '));
-
+console.log(`Период равен ${getTargetMonth(accumulatedMonth)} месяцев`);
 console.log('Бюджет на день: ' + budgetDay);
+console.log(getStatusIncome (budgetDay));
 
 
-if (budgetMonth > 0) console.log(
-    `Цель будет достигнута за ${Math.ceil(mission / budgetMonth)} месяцев`);
-else {
-  console.log(`Цель не будет достигнута никогда`);
+function showTypeOf(variable) {
+  console.log(typeof variable);
 }
 
-console.log(
-  `Бюджет на день: ${Math.floor(budgetDay)}`);
-
-if (budgetDay >= 1200) console.log(
-  'У вас высокий уровень дохода');
-else if (budgetDay >= 600) console.log(
-  'У вас средний уровень дохода');
-else if (budgetDay >= 0 ) console.log(
-  'К сожалению, у вас уровень дохода ниже среднего');
-else {
-  console.log(
-  'Что то пошло не так');
+function getExpensesMonth () {
+  return amount1 + amount2;
 }
+
+function getAccumulatedMonth () {
+  return money - getExpensesMonth ();
+}
+
+function getTargetMonth (accumulatedMonth) {
+  if (accumulatedMonth > 0) return  Math.ceil(mission / accumulatedMonth) ;
+  else {
+    return -1;
+      }
+}
+
+function getStatusIncome (localBudgetDay) {
+  if (localBudgetDay >= 1200) return 'У вас высокий уровень дохода';
+  else if (localBudgetDay >= 600) return 'У вас средний уровень дохода';
+  else if (localBudgetDay >= 0) return 'К сожалению, у вас уровень дохода ниже среднего';
+  else { return 'Что то пошло не так';
+  }
+}
+
