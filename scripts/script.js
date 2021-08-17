@@ -12,6 +12,14 @@ const getNumber = function(question) {
   return +answer;
 };
 
+const getText = function(question) {
+  let answer;
+  do {
+    answer = getInput(question);
+  } while (isNumber(answer));
+  return answer;
+};
+
 const getInput = function(question) {
   let answer;
   do {
@@ -33,6 +41,16 @@ const printTargetMonth = function() {
   }
 };
 
+const printAddExpenses = function() {
+  let resultString = '';
+  for (let i = 0; i < appData.addExpenses.length; i++ ) {
+    resultString += appData.addExpenses[i].slice(0,1).toUpperCase() + appData.addExpenses[i].slice(1) + ', ';
+  }
+  resultString = resultString.slice(0,-2);
+  console.log(resultString);
+};
+
+
 const money = start();
 
 const appData = {
@@ -41,14 +59,22 @@ const appData = {
   expenses: {},
   addExpenses: [],
   deposit: false,
+  depositAmount: 0,
+  depositInterest: 0,
   mission: 1000000,
   period: 12,
   asking: function() {
-    const addExpenses = getInput('Перечислите возможные расходы за рассчитываемый период через запятую');
+    if(confirm('Есть ли у вас источник дополнительного дохода?')) {
+      const incomeTitle = getText('Какой у Вас дополнительный заработок?');
+      const incomeAmount = getNumber('Сколько это Вам приносит?');
+          appData.income[incomeTitle] = incomeAmount;
+    }
+    const addExpenses = getText('Перечислите возможные расходы за рассчитываемый период через запятую');
           appData.addExpenses = addExpenses.toLowerCase().split(', ');
           appData.deposit = confirm('Есть ли у вас депозит в банке?');
+          this.getDepositInfo();
           for (let i = 0; i < 2; i++) {
-            let expenseTitle = getInput('Введите обязательную статью расходов?');
+            let expenseTitle = getText('Введите обязательную статью расходов?');
             let expenseAmount = getNumber('Во сколько это обойдется?');
             appData.expenses[expenseTitle] = expenseAmount;
           }
@@ -77,7 +103,17 @@ const appData = {
       else if (appData.budgetDay >= 0) return 'К сожалению, у вас уровень дохода ниже среднего';
       else { return 'Что то пошло не так';
       }
+    },
+  getDepositInfo: function () {
+    if (appData.deposit) {
+      appData.depositAmount = getNumber('Какая сумма депозита?');
+      appData.depositAmount = getNumber('Укажите величину годовой процентной ставки?');
     }
+  },
+  calcSavedMoney: function () {
+    return appData.period * appData.budgetMonth;
+    
+  }
 };
 
 appData.asking();
@@ -86,6 +122,7 @@ appData.asking();
 console.log(appData.expensesMonth);
 printTargetMonth();
 console.log(appData.getStatusIncome());
+printAddExpenses();
 
 console.log("Наша программа включает в себя данные: ");
 
