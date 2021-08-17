@@ -1,5 +1,27 @@
 'use strict';
 
+const calcButton = document.getElementById('start');
+const plusButtonIncome = document.getElementsByTagName('.income button')[0];
+const plusButtonExpenses = document.getElementsByTagName('.expenses button')[0];
+const depositCheckBox = document.querySelector('.deposit-check')[0];
+const additionalIncomeItem = document.querySelectorAll('.income-items');
+const budgetMonthValue = document.getElementsByClassName('budget_month-value');
+const budgetDayValue = document.getElementsByClassName('budget_day-value');
+const expensesMonthValue = document.getElementsByClassName('expenses_month-value');
+const additionalIncomeValue = document.getElementsByClassName('additional_income-value');
+const additionalExpensesValue = document.getElementsByClassName('additional_expenses-value');
+const incomePeriodValue = document.getElementsByClassName('income_period-value');
+const targetMonthValue = document.getElementsByClassName('target_month-value');
+const salaryAmount = document.getElementsByClassName('salary-amount');
+const additionalIncomeTitle = document.getElementsByClassName('additional_income-item');
+const additionalIncomeAmount = document.getElementsByClassName('additional_income-amount');
+const additionalExpensesItem = document.getElementsByClassName('additional_expenses-item');
+const periodSelector = document.getElementsByClassName('period-select');
+
+
+
+
+
 const isNumber = function(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 };
