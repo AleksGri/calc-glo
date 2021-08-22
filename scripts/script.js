@@ -4,7 +4,8 @@ const calcButton = document.getElementById('start');
 const plusButtonIncome = document.querySelectorAll('button.income_add')[0];
 const plusButtonExpenses = document.querySelectorAll('button.expenses_add')[0];
 const depositCheckBox = document.querySelector('.deposit-checkmark');
-const additionalIncomeItem = document.querySelectorAll('.income-items')[0];
+const additionalIncomeTitle = document.querySelectorAll('.additional_income-item')[0];
+const additionalIncomeAmount = document.querySelectorAll('.additional_income-amount')[0];
 const budgetMonthValue = document.getElementsByClassName('budget_month-value')[0];
 const budgetDayValue = document.getElementsByClassName('budget_day-value')[0];
 const expensesMonthValue = document.getElementsByClassName('expenses_month-value')[0];
@@ -12,11 +13,17 @@ const additionalIncomeValue = document.getElementsByClassName('additional_income
 const additionalExpensesValue = document.getElementsByClassName('additional_expenses-value')[0];
 const incomePeriodValue = document.getElementsByClassName('income_period-value')[0];
 const targetMonthValue = document.getElementsByClassName('target_month-value')[0];
-const salaryAmount = document.getElementsByClassName('salary-amount')[0];
-const additionalIncomeTitle = document.getElementsByClassName('additional_income-item')[0];
-const additionalIncomeAmount = document.getElementsByClassName('additional_income-amount')[0];
-const additionalExpensesItem = document.getElementsByClassName('additional_expenses-item')[0];
-const periodSelector = document.getElementsByClassName('period-select')[0];
+const salaryAmount = document.querySelector('.salary-amount');
+const incomeTitle = document.querySelector('.income-title');
+const incomeAmount = document.querySelector('.income-amount');
+const expensesTitle = document.querySelector('.expenses-title');
+const expensesAmount = document.querySelector('.expenses-amount');
+const additionalExpensesItem = document.querySelector('.additional_expenses-item');
+const depositBank = document.querySelector('.deposit-bank');
+const depositAmount = document.querySelector('.deposit-amount');
+const depositInterest = document.querySelector('.deposit-percent');
+const targetAmount = document.querySelector('.target-amount');
+const periodSelector = document.querySelector('.period-select');
 const cancelButton = document.getElementById('cancel');
 
 
@@ -139,7 +146,7 @@ const appData = {
   }
 };
 
-appData.asking();
+// appData.asking();
 
 
 console.log(appData.expensesMonth);
@@ -162,7 +169,8 @@ console.dir(calcButton);
 console.dir(plusButtonIncome);
 console.dir(plusButtonExpenses);
 console.dir(depositCheckBox);
-console.dir(additionalIncomeItem);
+console.dir(additionalIncomeTitle);
+console.dir(additionalIncomeAmount);
 console.dir(budgetMonthValue);
 console.dir(budgetDayValue);
 console.dir(expensesMonthValue);
@@ -171,7 +179,14 @@ console.dir(additionalExpensesValue);
 console.dir(incomePeriodValue);
 console.dir(targetMonthValue);
 console.dir(salaryAmount);
-console.dir(additionalIncomeTitle);
-console.dir(additionalIncomeAmount);
+console.dir(incomeTitle);
+console.dir(incomeAmount);
+console.dir(expensesTitle);
+console.dir(expensesAmount);
 console.dir(additionalExpensesItem);
+console.dir(depositBank);
+console.dir(depositAmount);
+console.dir(depositInterest);
+console.dir(targetAmount);
 console.dir(periodSelector);
+console.dir(cancelButton);
