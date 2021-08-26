@@ -110,19 +110,15 @@ const appData = {
 
     },
   showResult: function(){
-
-    const refresh = function() {
-      incomePeriodValue.value = appData.calcSavedMoney();
-    };
-    
     expensesMonthValue.value = appData.expensesMonth;
     additionalExpensesValue.value = appData.addExpenses.join(', ');
     budgetMonthValue.value = appData.budgetMonth;
     budgetDayValue.value = Math.round(appData.budgetDay);
     targetMonthValue.value = appData.getTargetMonth();
     incomePeriodValue.value = appData.calcSavedMoney();
-    periodSelector.addEventListener('input', appData.showResult.refresh());
-
+    periodSelector.addEventListener('input', function() {
+      incomePeriodValue.value = appData.calcSavedMoney();
+    });
   },
   addIncomeBlock: function(){
     const cloneIncomeBlock = incomeBlocks[incomeBlocks.length-1].cloneNode(true);
