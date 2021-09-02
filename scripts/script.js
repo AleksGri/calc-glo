@@ -140,12 +140,9 @@ AppData.prototype.reset = function(){
   plusButtonExpenses.style.display = 'block';
   plusButtonIncome.style.display = 'block';
   cancelButton.style.display = 'none';
-  appData = new AppData();
-  console.dir(appData);
-
-  // for (let prop in appDataClone) {
-  //   this[prop] = appDataClone[prop];
-  // }
+  for (let prop in appDataClone) {
+    this[prop] = appDataClone[prop];
+  }
   while(incomeBlocks.length > 1) {
     incomeBlocks[incomeBlocks.length-1].remove();
     incomeBlocks = document.querySelectorAll('.income-items');
@@ -284,11 +281,7 @@ AppData.prototype.listeners = function() {
 
 appData = new AppData();
 appData.listeners();
-
-
-
-
-// const appDataClone = JSON.parse(JSON.stringify(appData));
+const appDataClone = JSON.parse(JSON.stringify(appData));
 
 
 
