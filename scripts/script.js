@@ -34,11 +34,11 @@ let textDataFields;
 
 
 
-const isNumber = function(n) {
+const isNumber = (n) => {
   return !isNaN(parseFloat(n)) && isFinite(n);
 };
 
-const getNumber = function(question) {
+const getNumber = (question) => {
   let answer;
   do {
     answer = getInput(question);
@@ -46,7 +46,7 @@ const getNumber = function(question) {
   return +answer;
 };
 
-const getText = function(question) {
+const getText = (question) => {
   let answer;
   do {
     answer = getInput(question);
@@ -54,7 +54,7 @@ const getText = function(question) {
   return answer;
 };
 
-const getInput = function(question) {
+const getInput = (question) => {
   let answer;
   do {
     answer = prompt(question);
@@ -62,23 +62,6 @@ const getInput = function(question) {
   return answer;
 };
 
-const printTargetMonth = function() {
-  const targetMonth = appData.getTargetMonth();
-  if ( targetMonth > 0)
-    console.log(`Цель будет достигнута за ${targetMonth} месяцев`);
-  else { 
-    console.log(`Цель не будет достигнута`);
-  }
-};
-
-const printAddExpenses = function() {
-  let resultString = '';
-  for (let i = 0; i < appData.addExpenses.length; i++ ) {
-    resultString += appData.addExpenses[i].slice(0,1).toUpperCase() + appData.addExpenses[i].slice(1) + ', ';
-  }
-  resultString = resultString.slice(0,-2);
-  console.log(resultString);
-};
 
 function AppData () {
   this.income = {};
@@ -130,7 +113,7 @@ AppData.prototype.updateByPeriod = function(){
 };
 
 AppData.prototype.reset = function(){
-  textDataFields.forEach(function(item){
+  textDataFields.forEach((item) => {
     item.value = '';
     item.removeAttribute('readOnly');
     item.style.background = '#ffffff';
@@ -153,7 +136,7 @@ AppData.prototype.reset = function(){
   this.showResult.call(this);
 };
 
-AppData.prototype.addIncomeBlock = function(){
+AppData.prototype.addIncomeBlock = () => {
   const cloneIncomeBlock = incomeBlocks[incomeBlocks.length-1].cloneNode(true);
   const cloneIncomeBlockTitle = cloneIncomeBlock.querySelector('.income-title');
   cloneIncomeBlockTitle.value = '';
@@ -164,7 +147,7 @@ AppData.prototype.addIncomeBlock = function(){
   if (incomeBlocks.length === 3) plusButtonIncome.style.display = 'none';
 };
 
-AppData.prototype.addExpensesBlock = function(){
+AppData.prototype.addExpensesBlock = () =>{
   const cloneExpensesBlock = expensesBlocks[expensesBlocks.length-1].cloneNode(true);
   const cloneExpensesBlockTitle = cloneExpensesBlock.querySelector('.expenses-title');
   cloneExpensesBlockTitle.value = '';
@@ -181,7 +164,7 @@ AppData.prototype.getPeriod = function(){
 };
 
 AppData.prototype.getIncome = function(){
-  incomeBlocks.forEach(function(item,){
+  incomeBlocks.forEach((item) => {
     const incomeTitle = item.querySelector('.income-title').value;
     const incomeAmount = item.querySelector('.income-amount').value;
     if(incomeTitle !=='' && incomeAmount !== '') {
@@ -191,7 +174,7 @@ AppData.prototype.getIncome = function(){
 }
 
 AppData.prototype.getExpenses = function(){
-  expensesBlocks.forEach(function(item){
+  expensesBlocks.forEach((item) => {
     const expensesTitle = item.querySelector('.expenses-title').value;
     const expensesAmount = item.querySelector('.expenses-amount').value;
     if(expensesTitle !=='' && expensesAmount !== '') {
@@ -202,7 +185,7 @@ AppData.prototype.getExpenses = function(){
 
 AppData.prototype.getAddExpenses = function(){
   let addExpenses = additionalExpensesItem.value.split(',');
-  addExpenses.forEach(function(item){
+  addExpenses.forEach((item) => {
     item.trim();
     if (item !== '') {
       this.addExpenses.push(item);
@@ -242,12 +225,12 @@ AppData.prototype.calcSavedMoney = function(){
   return +periodSelector.value * (this.budgetMonth - this.expensesMonth);
 }
 
-AppData.prototype.textFieldsDisabler = function(){
+AppData.prototype.textFieldsDisabler = () => {
   textDataFields = document.querySelector('.data').querySelectorAll('input[type=text]');
-  textDataFields.forEach(function(item) {
+  textDataFields.forEach((item) => {
     item.setAttribute('readOnly','1');
     item.style.background = 'rgba(255,127,99,.26)';
-  })
+  });
   calcButton.style.display = 'none';
   plusButtonExpenses.style.display = 'none';
   plusButtonIncome.style.display = 'none';
@@ -264,7 +247,7 @@ AppData.prototype.listeners = function() {
 
 const appData = new AppData();
 appData.listeners();
-const appDataClone = JSON.parse(JSON.stringify(appData));
+const appDataClone = new AppData();
 
 
 
