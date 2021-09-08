@@ -86,15 +86,15 @@ class AppData {
 
   start() {
     this.budget = +salaryAmount.value;
-    this.getIncome.call(this);
-    this.getAdditionalIncomeMonth.call(this);
-    this.getExpenses.call(this);
-    this.getDepositInfo.call(this);
-    this.getExpensesMonth.call(this);
-    this.getBudget.call(this);
-    this.getAddExpenses.call(this);
-    this.showResult.call(this);
-    this.textFieldsDisabler.call(this);
+    this.getIncome();
+    this.getAdditionalIncomeMonth();
+    this.getExpenses();
+    this.getDepositInfo();
+    this.getExpensesMonth();
+    this.getBudget();
+    this.getAddExpenses();
+    this.showResult();
+    this.textFieldsDisabler();
     console.dir(appData);
   }
 
@@ -109,7 +109,7 @@ class AppData {
   }
 
   updateByPeriod() {
-    incomePeriodValue.value = this.calcSavedMoney.call(this);
+    incomePeriodValue.value = this.calcSavedMoney();
   }
 
   reset() {
@@ -238,11 +238,11 @@ class AppData {
   }
 
   listeners() {
-    calcButton.addEventListener('click', this.startCondition.bind(this));
+    calcButton.addEventListener('click', () => this.startCondition());
     plusButtonIncome.addEventListener('click', this.addIncomeBlock);
     plusButtonExpenses.addEventListener('click', this.addExpensesBlock);
-    periodSelector.addEventListener('input', this.getPeriod.bind(this));
-    cancelButton.addEventListener('click', this.reset.bind(this));
+    periodSelector.addEventListener('input', () => this.getPeriod());
+    cancelButton.addEventListener('click', () => this.reset());
   }
 }
 
