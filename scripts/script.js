@@ -31,7 +31,6 @@ let incomeBlocks = document.querySelectorAll('.income-items');
 const initialExpensesBlocks = document.querySelectorAll('.expenses-items');
 let expensesBlocks = document.querySelectorAll('.expenses-items');
 let textDataFields;
-let appData;
 
 
 
@@ -211,13 +210,6 @@ AppData.prototype.getAddExpenses = function(){
   }, this)
 }
 
-AppData.prototype.asking  = function(){
-  const addExpenses = getText('Перечислите возможные расходы за рассчитываемый период через запятую');
-  this.addExpenses = addExpenses.toLowerCase().split(', ');
-  this.deposit = confirm('Есть ли у вас депозит в банке?');
-          
-}
-
 AppData.prototype.getExpensesMonth = function(){
   for (let i in this.expenses) {
     this.expensesMonth += +this.expenses[i];
@@ -237,14 +229,6 @@ AppData.prototype.getBudget = function(){
 
 AppData.prototype.getTargetMonth = function(){
   return  Math.ceil(+targetAmount.value / (this.budgetMonth - this.expensesMonth)) ;
-}
-
-AppData.prototype.getStatusIncome = function(){
-  if (this.budgetDay >= 1200) return 'У вас высокий уровень дохода';
-  else if (this.budgetDay >= 600) return 'У вас средний уровень дохода';
-  else if (this.budgetDay >= 0) return 'К сожалению, у вас уровень дохода ниже среднего';
-  else { return 'Что то пошло не так';
-  }
 }
 
 AppData.prototype.getDepositInfo = function(){
@@ -278,8 +262,7 @@ AppData.prototype.listeners = function() {
   cancelButton.addEventListener('click', this.reset.bind(this));
 }
 
-
-appData = new AppData();
+const appData = new AppData();
 appData.listeners();
 const appDataClone = JSON.parse(JSON.stringify(appData));
 
