@@ -124,6 +124,20 @@ class AppData {
   }
 
   reset() {
+    this.income = {};
+    this.addIncome = [];
+    this.expenses = {};
+    this.addExpenses = [];
+    this.deposit = false;
+    this.depositAmount = 0;
+    this.depositInterest = 0;
+    this.period = 1;
+    this.budget = 0;
+    this.budgetDay = 0;
+    this.budgetMonth = 0;
+    this.additionalIncomeMonth = 0;
+    this.expensesMonth = 0;
+
     textDataFields.forEach((item) => {
       item.value = '';
       item.removeAttribute('readOnly');
@@ -136,9 +150,6 @@ class AppData {
     plusButtonExpenses.style.display = 'block';
     plusButtonIncome.style.display = 'block';
     cancelButton.style.display = 'none';
-    for (let prop in appDataClone) {
-      this[prop] = appDataClone[prop];
-    }
     while(incomeBlocks.length > 1) {
       incomeBlocks[incomeBlocks.length-1].remove();
       incomeBlocks = document.querySelectorAll('.income-items');
@@ -320,11 +331,6 @@ class AppData {
 
 const appData = new AppData();
 appData.listeners();
-const appDataClone = new AppData();
-appDataClone.income = {},
-appDataClone.addIncome = [];
-appDataClone.expenses = {};
-appDataClone.addExpenses = [];
 
 
 
